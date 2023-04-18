@@ -1,4 +1,7 @@
 # Rustlings Solutions
+
+![Noisestorm Crab Rave Gif](img/noisestorm_crab_rave.gif)
+
 My rustlings 5.4.1 solutions.
 
 ```bash

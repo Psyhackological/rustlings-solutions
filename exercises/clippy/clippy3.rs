@@ -1,11 +1,16 @@
 // clippy3.rs
+//
 // Here's a couple more easy Clippy fixes, so you can see its utility.
+//
+// Execute `rustlings hint clippy3` or use the `hint` watch subcommand for a hint.
 
 #[allow(unused_variables, unused_assignments)]
 fn main() {
-    let my_option: Option<()> = None;
+    let my_option: Option<()> = Some(());
     if let Some(value) = my_option {
-        my_option.unwrap();
+        // Use "value" directly here.
+        // No need to call
+        // my_option.unwrap();
     }
 
     let my_arr = &[-1, -2, -3 - 4, -5, -6];

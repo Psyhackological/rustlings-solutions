@@ -1,7 +1,11 @@
 // threads2.rs
-// Execute `rustlings hint threads2` or use the `hint` watch subcommand for a hint.
-// Building on the last exercise, we want all of the threads to complete their work but this time
-// the spawned threads need to be in charge of updating a shared value: JobStatus.jobs_completed
+//
+// Building on the last exercise, we want all of the threads to complete their
+// work but this time the spawned threads need to be in charge of updating a
+// shared value: JobStatus.jobs_completed
+//
+// Execute `rustlings hint threads2` or use the `hint` watch subcommand for a
+// hint.
 
 // 1. Imported Mutex
 use std::sync::{Arc, Mutex};
@@ -30,6 +34,9 @@ fn main() {
     }
     for handle in handles {
         handle.join().unwrap();
+        // Print the value of the JobStatus.jobs_completed. Did you notice
+        // anything interesting in the output? Do you have to 'join' on all the
+        // handles?
         // 4. Print the value of the JobStatus.jobs_completed
         let status = status
             .lock()

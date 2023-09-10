@@ -2,7 +2,7 @@
 
 ![Noisestorm Crab Rave Gif](img/noisestorm_crab_rave.gif)
 
-My rustlings 5.5.1 solutions.
+My rustlings 5.6.0 solutions.
 
 ```bash
 🎉 All exercises completed! 🎉

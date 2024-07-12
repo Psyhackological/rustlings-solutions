@@ -22,3 +22,5 @@ Cargo.lock
 
 # ready rustlings solutions
 solutions/
+# rustlings state ignore
+.rustlings-state.txt

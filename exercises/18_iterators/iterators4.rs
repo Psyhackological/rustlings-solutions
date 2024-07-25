@@ -1,12 +1,5 @@
 fn factorial(num: u8) -> u64 {
-    // TODO: Complete this function to return the factorial of `num`.
-    // Do not use:
-    // - early returns (using the `return` keyword explicitly)
-    // Try not to use:
-    // - imperative style loops (for/while)
-    // - additional variables
-    // For an extra challenge, don't use:
-    // - recursion
+    (2..=num).fold(1, |acc, n| acc * n as u64)
 }
 
 fn main() {

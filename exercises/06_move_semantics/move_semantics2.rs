@@ -14,8 +14,6 @@ fn main() {
 mod tests {
     use super::*;
 
-    // TODO: Make both vectors `vec0` and `vec1` accessible at the same time to
-    // fix the compiler error in the test.
     #[test]
     fn move_semantics2() {
         let vec0 = vec![22, 44, 66];

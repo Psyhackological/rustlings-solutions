@@ -20,11 +20,6 @@ impl Default for Person {
     }
 }
 
-// TODO: Complete this `From` implementation to be able to parse a `Person`
-// out of a string in the form of "Mark,20".
-// Note that you'll need to parse the age component into a `u8` with something
-// like `"4".parse::<u8>()`.
-//
 // Steps:
 // 1. Split the given string on the commas present in it.
 // 2. If the split operation returns less or more than 2 elements, return the
@@ -34,7 +29,30 @@ impl Default for Person {
 // 5. Parse the second element from the split operation into a `u8` as the age.
 // 6. If parsing the age fails, return the default of `Person`.
 impl From<&str> for Person {
-    fn from(s: &str) -> Self {}
+    fn from(s: &str) -> Self {
+        let mut comma_iter = s.split(',');
+
+        let name = match comma_iter.next() {
+            Some(n) if !n.is_empty() => n.to_owned(),
+            _ => return Person::default(),
+        };
+
+        let age_str = match comma_iter.next() {
+            Some(a) if !a.is_empty() => a,
+            _ => return Person::default(),
+        };
+
+        if comma_iter.next().is_some() {
+            return Person::default();
+        }
+
+        let age = match age_str.parse::<u8>() {
+            Ok(parsed_u8) => parsed_u8,
+            Err(_) => return Person::default(),
+        };
+
+        Self { name, age }
+    }
 }
 
 fn main() {

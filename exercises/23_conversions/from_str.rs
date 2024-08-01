@@ -25,11 +25,6 @@ enum ParsePersonError {
     ParseInt(ParseIntError),
 }
 
-// TODO: Complete this `From` implementation to be able to parse a `Person`
-// out of a string in the form of "Mark,20".
-// Note that you'll need to parse the age component into a `u8` with something
-// like `"4".parse::<u8>()`.
-//
 // Steps:
 // 1. Split the given string on the commas present in it.
 // 2. If the split operation returns less or more than 2 elements, return the
@@ -41,7 +36,34 @@ enum ParsePersonError {
 impl FromStr for Person {
     type Err = ParsePersonError;
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {}
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        if s.is_empty() {
+            return Err(Self::Err::BadLen);
+        }
+
+        let mut comma_iter = s.split(',');
+
+        let name = match comma_iter.next() {
+            Some("") | None => return Err(Self::Err::NoName),
+            Some(n) => n.to_owned(),
+        };
+
+        let age_str = match comma_iter.next() {
+            Some(a) => a,
+            None => return Err(Self::Err::BadLen),
+        };
+
+        if comma_iter.next().is_some() {
+            return Err(Self::Err::BadLen);
+        }
+
+        let age = match age_str.parse::<u8>() {
+            Ok(a) => a,
+            Err(e) => return Err(Self::Err::ParseInt(e)),
+        };
+
+        Ok(Self { name, age })
+    }
 }
 
 fn main() {

@@ -1,5 +1,5 @@
 fn factorial(num: u8) -> u64 {
-    (2..=num).fold(1, |acc, n| acc * n as u64)
+    (2..=num as u64).product()
 }
 
 fn main() {
